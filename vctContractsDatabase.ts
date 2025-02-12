@@ -14,6 +14,8 @@ const url = `https://sheets.googleapis.com/v4/spreadsheets/${
   Deno.env.get("GOOGLE_SHEET_ID")
 }/values/Sheet1?key=${Deno.env.get("GOOGLE_API_KEY")}`;
 
+// i think we can just scrape the data? all the data is in the html!
+
 const response = await fetch(url);
 const data = await response.json();
 console.log(data);
