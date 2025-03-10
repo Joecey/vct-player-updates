@@ -3,7 +3,8 @@
     "start:vct-bot": "deno run --unstable-cron --allow-read --allow-env --allow-net vctBlueskyBot.ts",
     "start:vct-graph": "deno run --allow-read --allow-env --allow-net vctContractsDatabase.ts",
     "db:generate": "deno --env -A --node-modules-dir npm:drizzle-kit generate",
-    "db:migrate": "deno --env -A --node-modules-dir npm:drizzle-kit migrate"
+    "db:migrate": "deno --env -A --node-modules-dir npm:drizzle-kit migrate",
+    "db:pull": "deno --env -A --node-modules-dir npm:drizzle-kit pull"
   },
   "imports": {
     "@std/assert": "jsr:@std/assert@1",

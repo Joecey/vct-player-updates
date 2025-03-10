@@ -5,4 +5,5 @@ export const players = pgTable("players", {
   id: serial().primaryKey().notNull(),
   name: text(),
   description: text(),
+  newColumn: text(),
 });
