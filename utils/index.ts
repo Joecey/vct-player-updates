@@ -1,2 +1,2 @@
-// @utils/
-export * from "./database/schema.ts";
+export * from "./database/schemas/players.ts";
+export * from "./database/dbFunctions/players.ts";
