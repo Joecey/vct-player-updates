@@ -24,3 +24,5 @@ export const playersSchema = pgTable("vct_players", {
   endYear: integer(),
   active: boolean().notNull().default(false),
 });
+
+export type InsertPlayer = typeof playersSchema.$inferInsert;

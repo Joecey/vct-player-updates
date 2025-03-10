@@ -1,6 +1,6 @@
-import { playersSchema } from "../../index.ts";
-
-import { drizzle } from "drizzle-orm/node-postgresql";
+import "jsr:@std/dotenv/load"; // MAKE SURE THIS IS HERE FOR ENV VARIABLES
+import { InsertPlayer, playersSchema } from "../../index.ts";
+import { drizzle } from "drizzle-orm/node-postgres";
 import pg from "pg";
 
 // pg driver
@@ -9,14 +9,20 @@ const { Pool } = pg;
 // Instantiate Drizzle client with pg driver and schema.
 export const db = drizzle({
   client: new Pool({
-    connectionString: Deno.env.get("DATABASE_URL"),
+    connectionString: Deno.env.get("DATABASE_URL")!,
   }),
   schema: { playersSchema },
+  prepare: false,
 });
 
 // insert a player into the database
-export const insertPlayer = async (player: typeof playersSchema) => {
-  return await db.insert(playersSchema).values(player);
-};
+/**
+ * @param {string} ign - the name of the player
+ */
+export async function insertPlayer(player: InsertPlayer) {
+  console.log("Inserting player function...");
+  await db.insert(playersSchema).values(player);
+  console.log("Player inserted successfully! here");
+}
 
 // delete a player by ign
