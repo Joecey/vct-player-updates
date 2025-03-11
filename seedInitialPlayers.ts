@@ -6,7 +6,7 @@ import { insertPlayer } from "./utils/index.ts";
 
 console.log("Inserting player...");
 await insertPlayer({
-  ign: "Joece2",
+  ign: "Joece4",
   region: "EMEA",
   team: "Fnatic",
   teamTag: "FNC",
