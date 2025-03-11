@@ -9,7 +9,7 @@
  */
 
 import "jsr:@std/dotenv/load";
-import cheerio from "https://esm.sh/cheerio@1.0.0-rc.10";
+import * as cheerio from "https://esm.sh/cheerio@1.0.0";
 
 const regionTableCSSSelector = ".ritz.grid-container";
 
