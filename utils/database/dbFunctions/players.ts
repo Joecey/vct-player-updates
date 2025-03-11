@@ -8,6 +8,7 @@ const { Pool } = pg;
 
 // Instantiate Drizzle client with pg driver and schema.
 export const db = drizzle({
+  // @ts-ignore - this has a weird error type sometimes depending on the OS
   client: new Pool({
     connectionString: Deno.env.get("DATABASE_URL")!,
   }),
