@@ -1,6 +1,7 @@
 // this is a playground for testing the code
 
-import { insertPlayer } from "./utils/index.ts";
+import { insertPlayer } from "./utils/database/index.ts";
+import { getPlayerRowsFromSheet } from "./utils/scraping/index.ts";
 
 // create a new player
 

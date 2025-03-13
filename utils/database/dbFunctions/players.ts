@@ -1,5 +1,5 @@
 import "jsr:@std/dotenv/load"; // MAKE SURE THIS IS HERE FOR ENV VARIABLES
-import { InsertPlayer, playersSchema } from "../../index.ts";
+import { InsertPlayer, playersSchema } from "../index.ts";
 import { drizzle } from "drizzle-orm/node-postgres";
 
 export const db = drizzle(Deno.env.get("DATABASE_URL")!);
