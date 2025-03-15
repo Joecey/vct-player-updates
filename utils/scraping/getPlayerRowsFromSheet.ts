@@ -8,6 +8,8 @@ const regionTableCSSSelector = ".ritz.grid-container";
 
 const knownRegions = ["AMERICAS", "EMEA", "CN", "PACIFIC"];
 
+// TODO: check the first row then map each of your desired columns to the correct index
+
 export const getPlayerRowsFromSheet = (
   dataHtml: string,
 ): TableResult => {
