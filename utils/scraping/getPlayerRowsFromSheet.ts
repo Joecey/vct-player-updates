@@ -8,8 +8,6 @@ const regionTableCSSSelector = ".ritz.grid-container";
 
 const knownRegions = ["AMERICAS", "EMEA", "CN", "PACIFIC"];
 
-// TODO: check the first row then map each of your desired columns to the correct index
-
 export const getPlayerRowsFromSheet = (
   dataHtml: string,
 ): TableResult => {
@@ -24,13 +22,37 @@ export const getPlayerRowsFromSheet = (
       let playersMap: Map<string, StaffProperties> = new Map();
 
       foundRegions.each((_index, region) => {
+        // TODO: check the first row then map each of your desired columns to the correct index
         const regionTable = $(region).children("table");
         const tableBody = $(regionTable).children("tbody");
         const rowEntries = $(tableBody).children("tr");
         rowEntriesLength += rowEntries.length;
+        const columnHeadersToIndexMap = new Map<string, number>();
 
         rowEntries.each((_rowIndex, row) => {
           const rowColumns = $(row).children("td");
+
+          // here, we set our column here
+          if (_rowIndex === 1) {
+            let columnCounter = 0;
+            rowColumns.each((_columnIndex, column) => {
+              if ($(column).text() !== "") {
+                // ? For some reason, americas has League as "mad" for some reason???
+                if ($(column).text() === "mad") {
+                  columnHeadersToIndexMap.set("LEAGUE", columnCounter);
+                } else {
+                  columnHeadersToIndexMap.set(
+                    lodash.upperCase($(column).text()),
+                    columnCounter,
+                  );
+                }
+              }
+              columnCounter += 1;
+            });
+            // TODO: use this to match up below columns to correct index
+            console.log(columnHeadersToIndexMap);
+          }
+
           if (knownRegions.includes(rowColumns.first().text())) {
             staffCount += 1;
 

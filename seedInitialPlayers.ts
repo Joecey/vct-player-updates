@@ -8,7 +8,7 @@ const response = await fetch(`${url}`);
 const html = await response.text();
 
 const playerMetaData = getPlayerRowsFromSheet(html);
-console.log(playerMetaData);
+// console.log(playerMetaData);
 console.log(playerMetaData.metadata.playersMap.size);
 
 // console.log("Inserting player...");
