@@ -11,6 +11,7 @@ export const teamRoles = pgEnum("role", [
   "PLAYER",
   "HEAD COACH",
   "ASSISTANT COACH",
+  "ADDITIONAL STAFF",
 ]);
 
 export const playersSchema = pgTable("vct_players", {

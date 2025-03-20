@@ -9,9 +9,11 @@ export const db = drizzle(Deno.env.get("DATABASE_URL")!);
  * @param {string} ign - the name of the player
  */
 export async function insertPlayer(player: InsertPlayer) {
-  console.log("Inserting player function...");
+  console.log(
+    `Attempting to insert player: ${player.ign} (${player.teamTag}, ${player.region})...`,
+  );
   await db.insert(playersSchema).values(player);
-  console.log("Player inserted successfully! here");
+  console.log(`Player ${player.ign} inserted successfully!`);
 }
 
 // delete a player by ign

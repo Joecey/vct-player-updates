@@ -22,7 +22,7 @@ export const getPlayerRowsFromSheet = (
       let playersMap: Map<string, StaffProperties> = new Map();
 
       foundRegions.each((_index, region) => {
-        // TODO: check the first row then map each of your desired columns to the correct index
+        // check the first row then map each of your desired columns to the correct index
         const regionTable = $(region).children("table");
         const tableBody = $(regionTable).children("tbody");
         const rowEntries = $(tableBody).children("tr");
@@ -49,8 +49,6 @@ export const getPlayerRowsFromSheet = (
               }
               columnCounter += 1;
             });
-            // TODO: use this to match up below columns to correct index
-            console.log(columnHeadersToIndexMap);
           }
 
           if (knownRegions.includes(rowColumns.first().text())) {
@@ -58,38 +56,102 @@ export const getPlayerRowsFromSheet = (
 
             const playerInfoArray: string[] = [];
             rowColumns.each((_columnIndex, column) => {
-              if ($(column).text() !== "") {
-                playerInfoArray.push($(column).text());
-              }
+              // here, create an array with raw information from player's row
+              playerInfoArray.push($(column).text());
             });
 
-            if ([10, 11].includes(playerInfoArray.length)) {
-              if (!knownRegions.includes(playerInfoArray[0])) {
-                console.log("Player region not found in known regions");
+            if (
+              !knownRegions.includes(
+                playerInfoArray[
+                  columnHeadersToIndexMap.get("LEAGUE") as number
+                ],
+              )
+            ) {
+              console.error("Player region not found in known regions");
+              skipped += 1;
+            } else if (
+              playerInfoArray[
+                columnHeadersToIndexMap.get(
+                  "OFFICIAL TOURNAMENT HANDLE",
+                ) as number
+              ] === ""
+            ) {
+              console.error("Player IGN not found");
+              skipped += 1;
+            } else {
+              const leagueIndex = columnHeadersToIndexMap.get("LEAGUE");
+              const teamIndex = columnHeadersToIndexMap.get("TEAM");
+              const ignIndex = columnHeadersToIndexMap.get(
+                "OFFICIAL TOURNAMENT HANDLE",
+              );
+              const roleIndex = columnHeadersToIndexMap.get("ROLE");
+              const legalFirstNameIndex = columnHeadersToIndexMap.get(
+                "LEGAL FIRST NAME",
+              );
+              const legalFamilyNameIndex = columnHeadersToIndexMap.get(
+                "LEGAL FAMILY NAME",
+              );
+              const endYearIndex = columnHeadersToIndexMap.get(
+                "END DATE MONTH DAY YEAR",
+              );
+              const residentStatusIndex = columnHeadersToIndexMap.get(
+                "RESIDENT STATUS",
+              );
+              const rosterStatusIndex = columnHeadersToIndexMap.get(
+                "ROSTER STATUS",
+              );
+              const teamTagIndex = columnHeadersToIndexMap.get("TEAM TAG");
+
+              if (
+                leagueIndex === undefined ||
+                teamIndex === undefined ||
+                ignIndex === undefined ||
+                roleIndex === undefined ||
+                legalFirstNameIndex === undefined ||
+                legalFamilyNameIndex === undefined ||
+                endYearIndex === undefined ||
+                residentStatusIndex === undefined ||
+                rosterStatusIndex === undefined ||
+                teamTagIndex === undefined
+              ) {
+                console.error("Missing column headers - skipping");
                 skipped += 1;
               } else {
+                const convertedPlayerRole = lodash.trim(
+                  playerInfoArray[roleIndex]
+                    .toUpperCase().replace("ASSISTANT", "").replace(
+                      "RESERVE",
+                      "",
+                    )
+                    .replace("ACTIVE", ""),
+                );
+
                 const playerInfoMap = new Map<string, StaffProperties>([
-                  [playerInfoArray[2], {
-                    ign: playerInfoArray[2],
-                    region: playerInfoArray[0] as
+                  [playerInfoArray[ignIndex], {
+                    ign: playerInfoArray[ignIndex],
+                    region: playerInfoArray[leagueIndex] as
                       | "AMERICAS"
                       | "EMEA"
                       | "CN"
                       | "PACIFIC",
-                    team: playerInfoArray[1],
-                    teamTag: playerInfoArray[9],
+                    team: playerInfoArray[teamIndex],
+                    teamTag: playerInfoArray[teamTagIndex],
                     role: ["PLAYER", "HEAD COACH"].includes(
-                        playerInfoArray[3].toUpperCase(),
+                        convertedPlayerRole,
                       )
-                      ? playerInfoArray[3].toUpperCase() as
+                      ? convertedPlayerRole as
                         | "PLAYER"
                         | "HEAD COACH"
                       : "ADDITIONAL STAFF",
-                    firstName: lodash.capitalize(playerInfoArray[4]),
-                    lastName: lodash.capitalize(playerInfoArray[5]),
-                    endYear: parseInt(playerInfoArray[6]),
+                    firstName: lodash.capitalize(
+                      playerInfoArray[legalFirstNameIndex],
+                    ),
+                    lastName: lodash.capitalize(
+                      playerInfoArray[legalFamilyNameIndex],
+                    ),
+                    endYear: parseInt(playerInfoArray[endYearIndex]),
                     active: ["Active", "Staff"].includes(
-                        lodash.capitalize(playerInfoArray[8]),
+                        lodash.capitalize(playerInfoArray[rosterStatusIndex]),
                       )
                       ? true
                       : false,
@@ -97,38 +159,6 @@ export const getPlayerRowsFromSheet = (
                 ]);
                 playersMap = new Map([...playersMap, ...playerInfoMap]);
               }
-            } // ! Special processing for flor since she doesn't have a name written down in the google sheet
-            else if (playerInfoArray[2] === "florescent") {
-              const playerInfoMap = new Map<string, StaffProperties>([
-                [playerInfoArray[2], {
-                  ign: playerInfoArray[2],
-                  region: playerInfoArray[0] as
-                    | "AMERICAS"
-                    | "EMEA"
-                    | "CN"
-                    | "PACIFIC",
-                  team: playerInfoArray[1],
-                  teamTag: playerInfoArray[7],
-                  role: ["PLAYER", "HEAD COACH"].includes(
-                      playerInfoArray[3].toUpperCase(),
-                    )
-                    ? playerInfoArray[3].toUpperCase() as
-                      | "PLAYER"
-                      | "HEAD COACH"
-                    : "ADDITIONAL STAFF",
-                  firstName: "",
-                  lastName: "",
-                  endYear: parseInt(playerInfoArray[4]),
-                  active: ["Active", "Staff"].includes(
-                      lodash.capitalize(playerInfoArray[6]),
-                    )
-                    ? true
-                    : false,
-                }],
-              ]);
-              playersMap = new Map([...playersMap, ...playerInfoMap]);
-            } else {
-              skipped += 1;
             }
           }
         });
