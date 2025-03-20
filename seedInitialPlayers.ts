@@ -12,18 +12,29 @@ console.log(
 );
 console.log(`Players skipped: ${playerMetaData.metadata.skipped} players...`);
 
-const testPlayer = playerMetaData.metadata.playersMap.get("m1xwell");
-
-if (testPlayer) {
-  await insertPlayer({
-    ign: testPlayer.ign,
-    region: testPlayer.region,
-    team: testPlayer.team,
-    teamTag: testPlayer.teamTag,
-    role: testPlayer.role,
-    firstName: testPlayer.firstName,
-    lastName: testPlayer.lastName,
-    endYear: testPlayer.endYear,
-    active: testPlayer.active,
-  });
+const foundPlayersKeys = playerMetaData.metadata.playersMap.keys();
+let success = 0;
+for (const key of foundPlayersKeys) {
+  try {
+    const player = playerMetaData.metadata.playersMap.get(key);
+    if (player) {
+      await insertPlayer({
+        ign: player.ign,
+        region: player.region,
+        team: player.team,
+        teamTag: player.teamTag,
+        role: player.role,
+        firstName: player.firstName,
+        lastName: player.lastName,
+        endYear: player.endYear,
+        active: player.active,
+      });
+    }
+    success += 1;
+  } catch (e) {
+    console.error(`Error inserting player: ${key} - ${e}`);
+  }
 }
+console.log(
+  `Inserted ${success} players out of ${playerMetaData.metadata.staffCount}!`,
+);
