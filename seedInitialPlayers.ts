@@ -1,3 +1,11 @@
+/**
+ * This script seeds your newly created database with the initial players from the Google Sheet.
+ * If there are already existing players in the database, this script will not insert them again.
+ *
+ * Written and maintained by Joe Linogao (@joedoescoding.com)
+ * 2025 - Present
+ */
+
 import "jsr:@std/dotenv/load";
 import { insertPlayer } from "./utils/database/index.ts";
 import { getPlayerRowsFromSheet } from "./utils/scraping/index.ts";
