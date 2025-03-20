@@ -1,7 +1,6 @@
 import "jsr:@std/dotenv/load";
 import { insertPlayer } from "./utils/database/index.ts";
 import { getPlayerRowsFromSheet } from "./utils/scraping/index.ts";
-import { KnownError } from "./utils/scraping/index.ts";
 
 const url = Deno.env.get("GOOGLE_SHEET_URL");
 const response = await fetch(`${url}`);
