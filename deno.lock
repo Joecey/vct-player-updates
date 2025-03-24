@@ -4,6 +4,7 @@
     "jsr:@std/assert@1": "1.0.11",
     "jsr:@std/dotenv@*": "0.225.3",
     "jsr:@std/internal@^1.0.5": "1.0.5",
+    "npm:@atproto/api@~0.14.10": "0.14.10",
     "npm:@types/node@*": "22.5.4",
     "npm:@types/pg@^8.11.11": "8.11.11",
     "npm:drizzle-kit@*": "0.30.5_esbuild@0.19.12",
@@ -29,6 +30,48 @@
     }
   },
   "npm": {
+    "@atproto/api@0.14.10": {
+      "integrity": "sha512-NzKKii5XfUwxBDF0p6ud3NeQh/CCbtVowJd4C7zIYR8cWLX6RAbfANMCyP4tmFmbvUfWQ42+GectYQVuCoBxNw==",
+      "dependencies": [
+        "@atproto/common-web",
+        "@atproto/lexicon",
+        "@atproto/syntax",
+        "@atproto/xrpc",
+        "await-lock",
+        "multiformats",
+        "tlds",
+        "zod"
+      ]
+    },
+    "@atproto/common-web@0.4.0": {
+      "integrity": "sha512-ZYL0P9myHybNgwh/hBY0HaBzqiLR1B5/ie5bJpLQAg0whRzNA28t8/nU2vh99tbsWcAF0LOD29M8++LyENJLNQ==",
+      "dependencies": [
+        "graphemer",
+        "multiformats",
+        "uint8arrays",
+        "zod"
+      ]
+    },
+    "@atproto/lexicon@0.4.9": {
+      "integrity": "sha512-/tmEuHQFr51V2V7EAVJzaA40sqJ7ylAZpR962VbOsPtmcdOHvezbjVHYEMXgfb927hS+xqbVyzBTbu5w9v8prA==",
+      "dependencies": [
+        "@atproto/common-web",
+        "@atproto/syntax",
+        "iso-datestring-validator",
+        "multiformats",
+        "zod"
+      ]
+    },
+    "@atproto/syntax@0.4.0": {
+      "integrity": "sha512-b9y5ceHS8YKOfP3mdKmwAx5yVj9294UN7FG2XzP6V5aKUdFazEYRnR9m5n5ZQFKa3GNvz7de9guZCJ/sUTcOAA=="
+    },
+    "@atproto/xrpc@0.6.11": {
+      "integrity": "sha512-J2cZP8FjoDN0UkyTYBlCvKvxwBbDm4dld47u6FQK30RJy9YpSiUkdxJJ10NYqpi7JVny3M0qWQgpWJDV94+PdA==",
+      "dependencies": [
+        "@atproto/lexicon",
+        "zod"
+      ]
+    },
     "@drizzle-team/brocli@0.10.2": {
       "integrity": "sha512-z33Il7l5dKjUgGULTqBsQBQwckHh5AbIuxhdsIxDDiZAzBOrZO6q9ogcWC65kU382AfynTfgNumVcNIjuIua6w=="
     },
@@ -198,6 +241,9 @@
         "pg-types@4.0.2"
       ]
     },
+    "await-lock@2.2.2": {
+      "integrity": "sha512-aDczADvlvTGajTDjcjpJMqRkOF6Qdz3YbPZm/PyW6tKPkx2hlYBzxMhEywM/tU72HrVZjgl5VCdRuMlA7pZ8Gw=="
+    },
     "buffer-from@1.1.2": {
       "integrity": "sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ=="
     },
@@ -306,11 +352,20 @@
         "resolve-pkg-maps"
       ]
     },
+    "graphemer@1.4.0": {
+      "integrity": "sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag=="
+    },
     "isexe@3.1.1": {
       "integrity": "sha512-LpB/54B+/2J5hqQ7imZHfdU31OlgQqx7ZicVlkm9kzg9/w8GKLEcFfJl/t7DCEDueOyBAD6zCCwTO6Fzs0NoEQ=="
     },
+    "iso-datestring-validator@2.2.2": {
+      "integrity": "sha512-yLEMkBbLZTlVQqOnQ4FiMujR6T4DEcCb1xizmvXS+OxuhwcbtynoosRzdMA69zZCShCNAbi+gJ71FxZBBXx1SA=="
+    },
     "ms@2.1.3": {
       "integrity": "sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA=="
+    },
+    "multiformats@9.9.0": {
+      "integrity": "sha512-HoMUjhH9T8DDBNT+6xzkrd9ga/XiBI4xLr58LJACwK6G3HTOPeMz4nB4KJs33L2BelrIJa7P0VuNaVF3hMYfjg=="
     },
     "obuf@1.1.2": {
       "integrity": "sha512-PX1wu0AmAdPqOL1mWhqmlOd8kOIZQwGZw6rh7uby9fTc5lhaOWFLX3I6R1hrF9k3zUY40e6igsLGkDXK92LJNg=="
@@ -433,6 +488,15 @@
     "split2@4.2.0": {
       "integrity": "sha512-UcjcJOWknrNkF6PLX83qcHM6KHgVKNkV62Y8a5uYDVv9ydGQVwAHMKqHdJje1VTWpljG0WYpCDhrCdAOYH4TWg=="
     },
+    "tlds@1.256.0": {
+      "integrity": "sha512-ZmyVB9DAw+FFTmLElGYJgdZFsKLYd/I59Bg9NHkCGPwAbVZNRilFWDMAdX8UG+bHuv7kfursd5XGqo/9wi26lA=="
+    },
+    "uint8arrays@3.0.0": {
+      "integrity": "sha512-HRCx0q6O9Bfbp+HHSfQQKD7wU70+lydKVt4EghkdOvlK/NlrF90z+eXV34mUd48rNvVJXwkrMSPpCATkct8fJA==",
+      "dependencies": [
+        "multiformats"
+      ]
+    },
     "undici-types@6.19.8": {
       "integrity": "sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw=="
     },
@@ -444,6 +508,9 @@
     },
     "xtend@4.0.2": {
       "integrity": "sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ=="
+    },
+    "zod@3.24.1": {
+      "integrity": "sha512-muH7gBL9sI1nciMZV67X5fTKKBLtwpZ5VBp1vsOQzj1MhrBZ4wlVCm3gedKZWLp0Oyel8sIGfeiz54Su+OVT+A=="
     }
   },
   "redirects": {
@@ -600,6 +667,7 @@
   "workspace": {
     "dependencies": [
       "jsr:@std/assert@1",
+      "npm:@atproto/api@~0.14.10",
       "npm:@types/pg@^8.11.11",
       "npm:drizzle-kit@~0.30.5",
       "npm:drizzle-orm@0.40",

@@ -8,6 +8,7 @@
     "db:push": "deno --env -A --node-modules-dir npm:drizzle-kit push"
   },
   "imports": {
+    "@atproto/api": "npm:@atproto/api@^0.14.10",
     "@std/assert": "jsr:@std/assert@1",
     "@types/pg": "npm:@types/pg@^8.11.11",
     "drizzle-kit": "npm:drizzle-kit@^0.30.5",

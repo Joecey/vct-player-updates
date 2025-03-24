@@ -9,9 +9,23 @@
  */
 
 import "jsr:@std/dotenv/load";
-import { getPlayerRowsFromSheet } from "./utils/scraping/index.ts";
+import { createAuthAgent } from "./utils/atproto/index.ts";
 
-// i think we can just scrape the data? all the data is in the html!
-const url = Deno.env.get("GOOGLE_SHEET_URL");
-const response = await fetch(`${url}`);
-const html = await response.text();
+// TODO: testing bsky agent here
+const agent = await createAuthAgent();
+
+if (!agent) {
+  console.log("Failed to create agent");
+  Deno.exit();
+}
+
+console.log("Agent created successfully!");
+
+const messagePayload = {
+  text: "Testing :)",
+  createdAt: new Date().toISOString(),
+};
+
+await agent.post(messagePayload);
+
+console.log(`Message posted successfully!: ${messagePayload.text}`);
