@@ -16,4 +16,13 @@ export async function insertPlayer(player: InsertPlayer) {
   console.log(`Player ${player.ign} inserted successfully!`);
 }
 
+// TODO: update a player based on ign
+export async function updatePlayer(player: InsertPlayer) {
+  console.log(
+    `Attempting to update player: ${player.ign} (${player.teamTag}, ${player.region})...`,
+  );
+  // await db.update(playersSchema).values(player);
+  console.log(`Player ${player.ign} updated successfully!`);
+}
+
 // delete a player by ign
