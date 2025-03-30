@@ -1,13 +1,6 @@
 import { createAuthAgent } from "./createAuthAgent.ts";
-import { broadcastNewStaff } from "./broadcastNewStaff.ts";
-import { broadcastRemovals } from "./broadcastRemovals.ts";
-import { broadcastChanges } from "./broadcastChanges.ts";
+import { sendPosts } from "./sendPosts.ts";
 
 export * from "./postFormatters.ts";
 
-export {
-  broadcastChanges,
-  broadcastNewStaff,
-  broadcastRemovals,
-  createAuthAgent,
-};
+export { createAuthAgent, sendPosts };
