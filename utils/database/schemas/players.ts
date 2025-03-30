@@ -26,4 +26,18 @@ export const playersSchema = pgTable("vct_players", {
   active: boolean().notNull().default(false),
 });
 
+export const playersSchemaTesting = pgTable("vct_players_testing", {
+  ign: text().notNull().unique().primaryKey(),
+  region: regionEnum().notNull(),
+  team: text().notNull(),
+  teamTag: text().notNull(),
+  role: teamRoles(),
+  firstName: text(),
+  lastName: text(),
+  endYear: integer(),
+  active: boolean().notNull().default(false),
+});
+
 export type InsertPlayer = typeof playersSchema.$inferInsert;
+export type InsertPlayerTesting = typeof playersSchemaTesting.$inferInsert;
+
