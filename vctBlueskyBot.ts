@@ -10,6 +10,8 @@ console.log(`VCT Player Updates bot started...`);
 
 Deno.cron("Log a message", "*/5 * * * *", () => {
   console.log(`This will print every fifth minute.`);
+  /* 1) Create map of the the current list of players in the database 
+
 });
 
 /*
@@ -22,3 +24,5 @@ What triggers do i want that will result in a bluesky post?
 
 - for efficiency how do we prioritize these triggers?
 */
+
+
