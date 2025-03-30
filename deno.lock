@@ -3,6 +3,7 @@
   "specifiers": {
     "jsr:@std/assert@1": "1.0.11",
     "jsr:@std/dotenv@*": "0.225.3",
+    "jsr:@std/fmt@*": "1.0.6",
     "jsr:@std/internal@^1.0.5": "1.0.5",
     "npm:@atproto/api@~0.14.10": "0.14.10",
     "npm:@types/node@*": "22.5.4",
@@ -24,6 +25,9 @@
     },
     "@std/dotenv@0.225.3": {
       "integrity": "a95e5b812c27b0854c52acbae215856d9cce9d4bbf774d938c51d212711e8d4a"
+    },
+    "@std/fmt@1.0.6": {
+      "integrity": "a2c56a69a2369876ddb3ad6a500bb6501b5bad47bb3ea16bfb0c18974d2661fc"
     },
     "@std/internal@1.0.5": {
       "integrity": "54a546004f769c1ac9e025abd15a76b6671ddc9687e2313b67376125650dc7ba"
