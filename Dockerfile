@@ -1,5 +1,4 @@
-FROM
-denoland/deno:2.0.2
+FROM denoland/deno:2.0.2
 
 # The port that your application listens to.
 
