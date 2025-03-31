@@ -17,3 +17,6 @@ RUN deno cache vctBlueskyBot.ts
 
 # Warmup caches
 RUN timeout 10s deno -A vctBlueskyBot.ts || [ $? -eq 124 ] || exit 1
+
+# Configure the container to run as an executable
+CMD ["task", "start:vct-bot"]
