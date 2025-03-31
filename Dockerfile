@@ -17,5 +17,3 @@ RUN deno cache vctBlueskyBot.ts
 
 # Warmup caches
 RUN timeout 10s deno -A vctBlueskyBot.ts || [ $? -eq 124 ] || exit 1
-
-CMD ["run",  "--unstable-cron", "--allow-read", "--allow-env", "--allow-net", "vctBlueskyBot.ts"]

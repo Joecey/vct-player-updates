@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "start:vct-bot": "deno run --unstable-cron --allow-read --allow-env --allow-net vctBlueskyBot.ts",
+    "start:vct-bot": "deno run --allow-read --allow-env --allow-net vctBlueskyBot.ts",
     "start:vct-graph": "deno run --allow-read --allow-env --allow-net vctContractsDatabase.ts",
     "start:vct-seed": "deno run  --allow-read --allow-env --allow-net seedInitialPlayers.ts",
     "db:generate": "deno --env -A --node-modules-dir npm:drizzle-kit generate",
@@ -14,5 +14,6 @@
     "drizzle-kit": "npm:drizzle-kit@^0.30.5",
     "drizzle-orm": "npm:drizzle-orm@^0.40.0",
     "pg": "npm:pg@^8.13.3"
-  }
+  },
+  "unstable": ["cron"]
 }
