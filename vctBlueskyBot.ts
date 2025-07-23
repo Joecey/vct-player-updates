@@ -24,7 +24,8 @@ Deno.cron(
   "Update VCT Database and post on Bluesky",
   "*/5 * * * *",
   async () => {
-    console.log(LogStatus.INFO, `Starting VCT Player Updates bot...`);
+    // TODO: fix shit
+    console.log(LogStatus.INFO, `Starting VCT Player Updates ...`);
     /* 1) Create map of the the current list of players in the database */
     const url = Deno.env.get("GOOGLE_SHEET_URL");
     const response = await fetch(`${url}`);
@@ -57,8 +58,10 @@ Deno.cron(
   */
 
     /* 4) in the google sheet map, if a player has not been identified at all, it means that they are a new player.
-  Create a new playerAdded post for bluesky and add them to the database as a new entry. */
+  Create a new playerAdded post for bluesky and add them to the database as a new entry. (playerAdded) */
 
-    /* 5) Gather all posts, and post on bluesky */
+    /* 5) If the player from the existing database list is not a key in googleSheetPlayerTruth, then they have been removed entirely (playerRemoved) */
+
+    /* 6) Gather all posts, and post on bluesky */
   },
 );
