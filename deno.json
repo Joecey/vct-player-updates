@@ -1,6 +1,7 @@
 {
   "tasks": {
     "start:vct-bot": "deno run --allow-read --allow-env --allow-net vctBlueskyBot.ts",
+    "start:vct-run-once": "deno run --allow-read --allow-env --allow-net vctBlueskyBotRunOnce.ts",
     "start:vct-graph": "deno run --allow-read --allow-env --allow-net vctContractsDatabase.ts",
     "start:vct-seed": "deno run  --allow-read --allow-env --allow-net seedInitialPlayers.ts",
     "db:generate": "deno --env -A --node-modules-dir npm:drizzle-kit generate",

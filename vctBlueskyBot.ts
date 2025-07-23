@@ -22,10 +22,10 @@ console.log(`VCT Player Updates bot started...`);
 
 Deno.cron(
   "Update VCT Database and post on Bluesky",
-  "*/5 * * * *",
+  "*/5 * * * *", // run every five minutes
   async () => {
     // TODO: fix shit
-    console.log(LogStatus.INFO, `Starting VCT Player Updates ...`);
+    console.log(LogStatus.INFO, `Running cron...`);
     /* 1) Create map of the the current list of players in the database */
     const url = Deno.env.get("GOOGLE_SHEET_URL");
     const response = await fetch(`${url}`);
