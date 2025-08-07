@@ -3,6 +3,7 @@ import * as cheerio from "https://esm.sh/cheerio@1.0.0";
 import * as lodash from "https://esm.sh/lodash@4.17.21";
 
 import { StaffProperties, TableResult } from "./types.ts";
+import { LogStatus } from "../logStatus.ts";
 
 const regionTableCSSSelector = ".ritz.grid-container";
 
@@ -14,13 +15,14 @@ export const getPlayerRowsFromSheet = (
   const $ = cheerio.load(dataHtml);
   const foundRegions = $(regionTableCSSSelector);
 
+  // TODO: need to get the regions by tab name instead if possible - then treat them as separate things
+  let staffCount = 0;
+  let rowEntriesLength = 0;
+  let skipped = 0;
+  let playersMap: Map<string, StaffProperties> = new Map();
+
   try {
     if (foundRegions.length === 4) {
-      let staffCount = 0;
-      let rowEntriesLength = 0;
-      let skipped = 0;
-      let playersMap: Map<string, StaffProperties> = new Map();
-
       foundRegions.each((_index, region) => {
         // check the first row then map each of your desired columns to the correct index
         const regionTable = $(region).children("table");
@@ -168,6 +170,7 @@ export const getPlayerRowsFromSheet = (
         metadata: { playersMap, skipped, staffCount, rowEntriesLength },
       };
     } else {
+      console.log(LogStatus.ERROR, foundRegions.length);
       throw new Error("known regions not equal to 4");
     }
   } catch (error) {
