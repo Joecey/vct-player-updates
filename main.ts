@@ -12,11 +12,8 @@ import {
 
 export const main = async () => {
   /* 1) Create map of the the current list of players in the database */
-  const url = Deno.env.get("GOOGLE_SHEET_URL");
-  const response = await fetch(`${url}`);
-  const html = await response.text();
 
-  const playerMetaData = getPlayerRowsFromSheet(html);
+  const playerMetaData = await getPlayerRowsFromSheet();
   const googleSheetPlayerTruth = playerMetaData.metadata.playersMap;
 
   console.log(
