@@ -1,7 +1,7 @@
 // getPlayerRowsFromSheet.ts
 import "jsr:@std/dotenv/load";
-import * as cheerio from "https://esm.sh/cheerio@1.0.0";
-import * as lodash from "https://esm.sh/lodash@4.17.21";
+import * as cheerio from "cheerio";
+import * as lodash from "lodash";
 
 import { StaffProperties, TableResult } from "./types.ts";
 import { LogStatus } from "../logStatus.ts";
@@ -18,6 +18,7 @@ export const getPlayerRowsFromSheet = async (): Promise<TableResult> => {
   const $ = await cheerio.fromURL(url);
 
   const foundRegions = $(regionTableCSSSelector);
+  console.log(foundRegions.text());
 
   // TODO: need to get the regions by tab name instead if possible - then treat them as separate things
   let staffCount = 0;

@@ -12,8 +12,10 @@
     "@atproto/api": "npm:@atproto/api@^0.14.10",
     "@std/assert": "jsr:@std/assert@1",
     "@types/pg": "npm:@types/pg@^8.11.11",
+    "cheerio": "npm:cheerio@^1.1.2",
     "drizzle-kit": "npm:drizzle-kit@^0.30.5",
     "drizzle-orm": "npm:drizzle-orm@^0.40.0",
+    "lodash": "npm:lodash@^4.17.21",
     "pg": "npm:pg@^8.13.3"
   },
   "unstable": ["cron"]
